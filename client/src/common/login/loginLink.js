@@ -1,4 +1,4 @@
-angular.module( 'login', [] )
+angular.module( 'login.link', [] )
 
     .directive( 'loginLink', function() {
         return {
