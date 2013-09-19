@@ -1,6 +1,6 @@
 angular.module( 'login', [] )
 
-    .directive( 'login', function() {
+    .directive( 'loginLink', function() {
         return {
             template: '<a href="#/login"><i class="icon-user"></i>&nbsp;Login</a>'
         };
