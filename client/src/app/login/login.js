@@ -39,8 +39,11 @@ angular.module( 'ngBoilerplate.login', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LoginCtrl', function LoginController( $scope ) {
-})
+.controller('LoginCtrl', ['$scope', '$location', '$route', 'login',
+    function ($scope, $location, $route, login) {
+        $scope.location = $location;
 
+        $scope.isAuthenticated = false;
+}])
 ;
 
