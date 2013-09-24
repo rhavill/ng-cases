@@ -42,7 +42,7 @@ angular.module( 'ngBoilerplate.login', [
     function ($scope, $location, $route) {
         $scope.location = $location;
         $scope.loginVar = 'this is a scope variable.';
-        $scope.isAuthenticated = false;
+        $scope.loggedIn = true;
 }])
 ;
 
