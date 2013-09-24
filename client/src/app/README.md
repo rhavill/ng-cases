@@ -6,7 +6,7 @@
 src/
   |- app/
   |  |- home/
-  |  |- about/
+  |  |- private/
   |  |- app.js
   |  |- app.spec.js
 ```
@@ -46,7 +46,7 @@ angular.module( 'ngBoilerplate', [
   'templates-app',
   'templates-common',
   'ngBoilerplate.home',
-  'ngBoilerplate.about'
+  'ngBoilerplate.private'
   'ui.state',
   'ui.route'
 ])

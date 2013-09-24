@@ -1,16 +1,16 @@
-angular.module( 'ngBoilerplate.about', [
+angular.module( 'ngBoilerplate.private', [
   'ui.state',
   'placeholders',
   'ui.bootstrap'
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'about', {
-    url: '/about',
+  $stateProvider.state( 'private', {
+    url: '/private',
     views: {
       "main": {
         controller: 'AboutCtrl',
-        templateUrl: 'about/about.tpl.html'
+        templateUrl: 'private/private.tpl.html'
       }
     },
     data:{ pageTitle: 'What is It?' }
