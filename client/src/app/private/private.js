@@ -9,15 +9,15 @@ angular.module( 'ngBoilerplate.private', [
     url: '/private',
     views: {
       "main": {
-        controller: 'AboutCtrl',
+        controller: 'PrivateCtrl',
         templateUrl: 'private/private.tpl.html'
       }
     },
-    data:{ pageTitle: 'What is It?' }
+    data:{ pageTitle: 'Private' }
   });
 })
 
-.controller( 'AboutCtrl', function AboutCtrl( $scope ) {
+.controller( 'PrivateCtrl', function PrivateCtrl( $scope ) {
   // This is simple a demo for UI Boostrap.
   $scope.dropdownDemoItems = [
     "The first choice!",
