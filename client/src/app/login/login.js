@@ -14,7 +14,6 @@
  */
 angular.module( 'ngBoilerplate.login', [
   'ui.state',
-  'plusOne',
    'login'
 ])
 
