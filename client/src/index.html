@@ -18,11 +18,6 @@
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 </head>
 <body>
-    <div ng-controller="LoginCtrl">
-        Login Ctrl loginVar: {{ loginVar }} logged in?:
-        <b ng-hide="loggedIn">No</b>
-        <b ng-show="loggedIn">Yes</b>
-    </div>
         <div class="navbar">
             <div class="navbar-inner">
             <div class="container">
@@ -40,5 +35,11 @@
     </div>
 
     <div class="container" ui-view="main"></div>
+
+    <div ng-controller="LoginCtrl">
+        <p>Login Ctrl loginVar: {{ loginVar }} logged in?:
+        <b ng-hide="loggedIn">No</b>
+        <b ng-show="loggedIn">Yes</b></p>
+    </div>
 </body>
 </html>

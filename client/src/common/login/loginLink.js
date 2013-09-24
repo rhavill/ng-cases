@@ -4,7 +4,7 @@ angular.module( 'login.link', [] )
             templateUrl: 'login/loginLink.tpl.html',
             scope: true,
             link: function($scope, $element, $attrs, $controller) {
-                $scope.isAuthenticated = true;
+                $scope.isAuthenticated = false;
             }
         };
     })
