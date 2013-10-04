@@ -1,3 +1,8 @@
 angular.module('login', [
     'login.link',
-    'login.form']);
+    'login.form'])
+.factory('login', ['$http', function($http) {
+    return {
+        loggedIn: false
+    };
+}]);

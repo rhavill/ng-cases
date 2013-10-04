@@ -11,7 +11,7 @@ describe('login link', function() {
         angular.element(document.body).append(link);
     }));
 */
-    beforeEach(inject(function(_$rootScope_, $compile) {
+    beforeEach(inject(function(_$rootScope_, $compile, _login_) {
         $rootScope = _$rootScope_;
         //login = _login_;
         link = $compile('<login-link></login-link>')($rootScope);
