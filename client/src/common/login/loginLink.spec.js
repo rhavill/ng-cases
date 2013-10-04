@@ -13,7 +13,7 @@ describe('login link', function() {
 */
     beforeEach(inject(function(_$rootScope_, $compile, _login_) {
         $rootScope = _$rootScope_;
-        //login = _login_;
+        login = _login_;
         link = $compile('<login-link></login-link>')($rootScope);
         $rootScope.$digest();
         scope = link.scope();
@@ -22,18 +22,23 @@ describe('login link', function() {
     it( 'should have a dummy test', inject( function() {
         expect( true ).toBeTruthy();
     }));
-    /*
+
     afterEach(function() {
         link.remove();
     });
 
-    it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
+    /*
+     it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
         expect(scope.currentUser).toBeDefined();
         expect(scope.isAuthenticated).toBe(login.isAuthenticated);
         expect(scope.login).toBe(login.showLogin);
         expect(scope.logout).toBe(login.logout);
     }));
-
+*/
+    it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
+        expect(scope.isAuthenticated).toBe(login.isAuthenticated);
+    }));
+    /*
     it('should display a link with the current user name, when authenticated', function () {
         login.currentUser = { firstName: 'Jo', lastName: 'Bloggs'};
         $rootScope.$digest();
