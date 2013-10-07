@@ -3,6 +3,8 @@ angular.module('login', [
     'login.form'])
 .factory('login', ['$http', function($http) {
     return {
-        loggedIn: false
+        isAuthenticated: function() {
+            return false;
+        }
     };
 }]);

@@ -1,16 +1,7 @@
 describe('login link', function() {
     var $rootScope, scope, link, login;
     beforeEach(module('login/loginLink.tpl.html', 'login'));
-/*
-    beforeEach(inject(function(_$rootScope_, $compile, _login_) {
-        $rootScope = _$rootScope_;
-        login = _login_;
-        link = $compile('<login-link></login-link>')($rootScope);
-        $rootScope.$digest();
-        scope = link.scope();
-        angular.element(document.body).append(link);
-    }));
-*/
+
     beforeEach(inject(function(_$rootScope_, $compile, _login_) {
         $rootScope = _$rootScope_;
         login = _login_;
@@ -20,7 +11,7 @@ describe('login link', function() {
         scope = link.scope();
         angular.element(document.body).append(link);
         console.log(link);
-        console.log(login.loggedIn);
+        console.log(login.isAuthenticated);
         console.log(scope.isAuthenticated);
     }));
     it( 'should have a dummy test', inject( function() {
@@ -40,7 +31,7 @@ describe('login link', function() {
     }));
 */
     it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
-        //expect(scope.isAuthenticated).toBe(login.isAuthenticated);
+        expect(scope.isAuthenticated).toBe(login.isAuthenticated);
     }));
     /*
     it('should display a link with the current user name, when authenticated', function () {
