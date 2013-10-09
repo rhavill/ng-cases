@@ -9,6 +9,7 @@ module.exports = function ( config ) {
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
+      'vendor/jquery/jquery.js',
       <% scripts.forEach( function ( file ) { %>'<%= file %>',
       <% }); %>
       'src/**/*.js',
