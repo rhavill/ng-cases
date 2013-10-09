@@ -71,7 +71,7 @@ describe('login link', function() {
     });
 */
     it('should display login when user is not authenticated', function() {
-        expect(link.find('a').text()).toBe(String.fromCharCode(0xA0)+'Login');
+        expect(link.find('a:visible').text()).toBe(String.fromCharCode(0xA0)+'Login');
         //expect(link.find('a:hidden').text()).toBe('<i class="icon-user"></i>&nbsp;Logout');
         //expect(link.find('li').text()).toBe('Log in');
     });
