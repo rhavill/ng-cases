@@ -5,12 +5,10 @@ describe('login link', function() {
     beforeEach(inject(function(_$rootScope_, $compile, _login_) {
         $rootScope = _$rootScope_;
         login = _login_;
-        //link = $compile('<login-link></login-link>')($rootScope);
         link = $compile('<li login-link></li>')($rootScope);
         $rootScope.$digest();
         scope = link.scope();
         angular.element(document.body).append(link);
-        //console.log(scope);
     }));
     it( 'should have a dummy test', inject( function() {
         expect( true ).toBeTruthy();
