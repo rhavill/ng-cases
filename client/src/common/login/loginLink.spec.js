@@ -10,9 +10,7 @@ describe('login link', function() {
         $rootScope.$digest();
         scope = link.scope();
         angular.element(document.body).append(link);
-        console.log(link);
-        console.log(login.isAuthenticated);
-        console.log(scope.isAuthenticated);
+        //console.log(scope);
     }));
     it( 'should have a dummy test', inject( function() {
         expect( true ).toBeTruthy();
@@ -31,6 +29,7 @@ describe('login link', function() {
     }));
 */
     it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
+        expect(scope.user).toBeDefined();
         expect(scope.isAuthenticated).toBe(login.isAuthenticated);
     }));
     /*
