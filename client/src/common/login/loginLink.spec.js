@@ -46,18 +46,6 @@ describe('login link', function() {
         expect(link.find('a').is(':visible')).toBe(false);
     });
 
-    it('should display login when user is not authenticated', function() {
-        expect(link.find('button:visible').text()).toBe('Log in');
-        expect(link.find('button:hidden').text()).toBe('Log out');
-    });
-
-    it('should display logout when user is authenticated', function() {
-        login.currentUser = {};
-        $rootScope.$digest();
-        expect(link.find('button:visible').text()).toBe('Log out');
-        expect(link.find('button:hidden').text()).toBe('Log in');
-    });
-
     it('should call logout when the logout button is clicked', function () {
         spyOn(scope, 'logout');
         link.find('button.logout').click();
@@ -72,7 +60,13 @@ describe('login link', function() {
 */
     it('should display login when user is not authenticated', function() {
         expect(link.find('a:visible').text()).toBe(String.fromCharCode(0xA0)+'Login');
-        //expect(link.find('a:hidden').text()).toBe('<i class="icon-user"></i>&nbsp;Logout');
-        //expect(link.find('li').text()).toBe('Log in');
+        expect(link.find('a:hidden').text()).toBe(String.fromCharCode(0xA0)+'Logout');
+    });
+
+    it('should display logout when user is authenticated', function() {
+        login.user = {};
+        $rootScope.$digest();
+        expect(link.find('a:visible').text()).toBe(String.fromCharCode(0xA0)+'Logout');
+        expect(link.find('a:hidden').text()).toBe(String.fromCharCode(0xA0)+'Login');
     });
 });
