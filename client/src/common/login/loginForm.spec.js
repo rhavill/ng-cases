@@ -5,7 +5,7 @@
  * automatically.
  */
 describe( 'login section', function() {
-  beforeEach( module( 'ngBoilerplate.login' ) );
+  beforeEach( module( 'login' ) );
     var $scope;
     var $controller;
 
@@ -15,14 +15,14 @@ describe( 'login section', function() {
             $controller = $injector.get('$controller');
         }));
 
-        describe('LoginCtrl', function () {
+        describe('LoginFormCtrl', function () {
             it('should be unauthenticated by default', function () {
                 var params = {
                     $scope: $scope
                     //crudListMethods: jasmine.createSpy('crudListMethods'),
                     //users: {}
                 };
-                var ctrl = $controller('LoginCtrl', params);
+                var ctrl = $controller('LoginFormCtrl', params);
                 expect($scope.loggedIn).toBe(false);
                 //expect($scope.users).toBe(params.users);
                 //expect(params.crudListMethods).toHaveBeenCalled();

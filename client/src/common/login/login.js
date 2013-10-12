@@ -1,6 +1,7 @@
 angular.module('login', [
     'login.link',
-    'login.form'])
+    'login.form',
+        'login.formcontroller'])
 .factory('login', ['$http', function($http) {
     var service =  {
         user: null,

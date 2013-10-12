@@ -27,7 +27,7 @@ angular.module( 'ngBoilerplate.login', [
     url: '/login',
     views: {
       "main": {
-        controller: 'LoginCtrl',
+        controller: 'LoginFormCtrl',
         templateUrl: 'login/login.tpl.html'
       }
     },
@@ -35,14 +35,6 @@ angular.module( 'ngBoilerplate.login', [
   });
 })
 
-/**
- * And of course we define a controller for our route.
- */
-.controller('LoginCtrl', ['$scope', '$location', '$route',
-    function ($scope, $location, $route) {
-        $scope.location = $location;
-        $scope.loginVar = 'this is a scope variable.';
-        $scope.loggedIn = false;
-}])
+
 ;
 
