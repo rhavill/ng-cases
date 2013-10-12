@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
+var users = require('./users.js');
+
 // simple logger
 app.use(function(req, res, next){
   console.log('%s %s', req.method, req.url);
@@ -63,6 +65,7 @@ app.get('/hello.txt', function(req, res){
 app.get('/private.txt', function(req, res){
   res.send('This page requires a login.');
 });
+app.get('/users', users.findAll);
 app.post('/login',
   passport.authenticate('local'),
   function(req, res) {
