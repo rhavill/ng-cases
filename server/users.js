@@ -19,6 +19,20 @@ db.open(function(err, db) {
     }
 });
 
+exports.findByUsername = function(user, done) {
+    var username = user.username;
+    console.log('Retrieving user: ' + username);
+    db.collection('users', function(err, collection) {
+        collection.findOne({'username': username}, function(err, user) {
+            //res.send(user);
+            done(err, user);
+            return;
+            console.log(user);
+            return user;
+        });
+    });
+};
+
 exports.findById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving user: ' + id);

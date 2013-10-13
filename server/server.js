@@ -33,28 +33,29 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  // User.findById(id, function(err, user) {
-  //   done(err, user);
-  // });
-  done(null, {id:1, username:'admin', password:'password'});
+   User.findById(id, function(err, user) {
+     done(err, user);
+   });
+  //done(null, {id:1, username:'admin', password:'password'});
 });
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    // User.findOne({ username: username }, function (err, user) {
-    //   if (err) { return done(err); }
-    //   if (!user) {
-    //     return done(null, false, { message: 'Incorrect username.' });
-    //   }
-    //   if (!user.validPassword(password)) {
-    //     return done(null, false, { message: 'Incorrect password.' });
-    //   }
-    //});
-    if (username == 'admin' && password == 'password') {
-      var user = {id: 1, username: 'admin', password: 'password'};
-      return done(null, user);
-    }
-    else return done(null, false, { message: 'Incorrect username or password.' });
+    users.findByUsername({ username: username }, function (err, user) {
+       if (err) { return done(err); }
+       if (!user) {
+         return done(null, false, { message: 'Incorrect username.' });
+       }
+       if (!user.validPassword(password)) {
+         return done(null, false, { message: 'Incorrect password.' });
+       }
+       return done(null, user);
+    });
+//    if (username == 'admin' && password == 'admin') {
+//      var user = {id: 1, username: 'admin', password: 'admin'};
+//      return done(null, user);
+//    }
+//    else return done(null, false, { message: 'Incorrect username or password.' });
   }
 ));
 
@@ -66,14 +67,19 @@ app.get('/private.txt', function(req, res){
   res.send('This page requires a login.');
 });
 app.get('/users', users.findAll);
+app.get('/users/:id', users.findById);
+
 app.post('/login',
-  passport.authenticate('local'),
+  passport.authenticate('local', /*{ successRedirect: '/private.txt',
+        failureRedirect: '/hello.txt' }*/
   function(req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     //res.redirect('/users/' + req.user.username);
     res.redirect('/private.txt');
-});
+  }
+  )
+);
 
 
 app.listen(3000);
