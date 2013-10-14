@@ -41,14 +41,14 @@ passport.deserializeUser(function(id, done) {
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
+      console.log('trying to find login for username:'+username+' password:'+password);
     users.findByUsername({ username: username }, function (err, user) {
-       if (err) { return done(err); }
-       if (!user) {
-         return done(null, false, { message: 'Incorrect username.' });
+       if (err) { console.log('some kind of error.'); return done(err); }
+       if (username !== user.username || password !== user.password) {
+         console.log('invalid user or pass.');
+         return done(null, false, { message: 'Incorrect username or password.' });
        }
-       if (!user.validPassword(password)) {
-         return done(null, false, { message: 'Incorrect password.' });
-       }
+       console.log('login successful');
        return done(null, user);
     });
 //    if (username == 'admin' && password == 'admin') {
@@ -69,16 +69,22 @@ app.get('/private.txt', function(req, res){
 app.get('/users', users.findAll);
 app.get('/users/:id', users.findById);
 
-app.post('/login',
-  passport.authenticate('local', /*{ successRedirect: '/private.txt',
-        failureRedirect: '/hello.txt' }*/
-  function(req, res) {
+app.post('/login', passport.authenticate('local',
+        function (err, user) {
+            console.log('next two logs are from callback passed to authenticate function.');
+            console.log(err);
+            console.log(user);
+        }
+
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     //res.redirect('/users/' + req.user.username);
-    res.redirect('/private.txt');
-  }
+      //console.log('req:'+req);
+      //console.log(res);
+
   )
+    //res.redirect('/private.txt')
+
 );
 
 
