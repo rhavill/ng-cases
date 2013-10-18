@@ -54,13 +54,27 @@ app.get('/private.txt', function(req, res){
   res.send('This page requires a login.');
 });
 
-app.post('/login', passport.authenticate('local',
-         { failureRedirect: '/hello.txt' }
-  ), function(req, res) {
-        res.redirect('/private.txt');
-        console.log('sweet');
-    }
-)
+//app.post('/login', passport.authenticate('local',
+//         { failureRedirect: '/hello.txt' }
+//  ), function(req, res) {
+//        res.redirect('/private.txt');
+//        console.log('sweet');
+//    }
+//)
+app.post('/login', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err) }
+        if (!user) {
+            console.log('notify failed login.');
+            return res.redirect('/hello.txt')
+        }
+        req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            console.log('notify successful login.')
+            return res.redirect('/private.txt');
+        });
+    })(req, res, next);
+});
 ;
 
 app.listen(3000);
