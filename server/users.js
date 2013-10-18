@@ -24,25 +24,20 @@ exports.findByUsername = function(user, done) {
     console.log('Retrieving user: ' + username);
     db.collection('users', function(err, collection) {
         collection.findOne({'username': username}, function(err, user) {
-            //res.send(user);
             done(err, user);
-            return;
-            console.log(user);
-            return user;
         });
     });
 };
 
-exports.findById = function(req, res) {
-    var id = req.params.id;
+exports.findById = function(id, done) {
     console.log('Retrieving user: ' + id);
     db.collection('users', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
+        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, user) {
+            done(err, user);;
         });
     });
 };
-
+/*
 exports.findAll = function(req, res) {
     db.collection('users', function(err, collection) {
         collection.find().toArray(function(err, items) {
@@ -98,7 +93,7 @@ exports.deleteUser = function(req, res) {
         });
     });
 }
-
+*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Populate database with sample data -- Only used once: the first time the application is started.
 // You'd typically not find this code in a real-life app, since the database would already exist.

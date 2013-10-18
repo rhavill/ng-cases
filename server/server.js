@@ -28,15 +28,22 @@ app.configure(function() {
 
 
 
+//passport.serializeUser(function(user, done) {
+//  done(null, {id: user._id, username: user.usename});
+//});
+//passport.deserializeUser(function(id, done) {
+//   users.findById(id, function(err, user) {
+//     done(err, user);
+//   });
+//});
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-   User.findById(id, function(err, user) {
-     done(err, user);
-   });
-  //done(null, {id:1, username:'admin', password:'password'});
+    users.findById(id, function (err, user) {
+        done(err, user);
+    });
 });
 
 passport.use(new LocalStrategy(
@@ -49,6 +56,7 @@ passport.use(new LocalStrategy(
          return done(null, false, { message: 'Incorrect username or password.' });
        }
        console.log('login successful');
+       console.log(user);
        return done(null, user);
     });
 //    if (username == 'admin' && password == 'admin') {
@@ -66,27 +74,43 @@ app.get('/hello.txt', function(req, res){
 app.get('/private.txt', function(req, res){
   res.send('This page requires a login.');
 });
-app.get('/users', users.findAll);
-app.get('/users/:id', users.findById);
-
+//app.get('/users', users.findAll);
+//app.get('/users/:id', users.findById);
+/*
+ app.get('/protected', function(req, res, next) {
+ *       passport.authenticate('local', function(err, user, info) {
+ *         if (err) { return next(err) }
+ *         if (!user) { return res.redirect('/signin') }
+ *         res.redirect('/account');
+ *       })(req, res, next);
+ *     });
+ */
 app.post('/login', passport.authenticate('local',
-        function (err, user) {
+        /*function (err, user) {
             console.log('next two logs are from callback passed to authenticate function.');
             console.log(err);
             console.log(user);
-        }
-
+        }*/
+         { failureRedirect: '/hello.txt' }
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     //res.redirect('/users/' + req.user.username);
       //console.log('req:'+req);
       //console.log(res);
 
-  )
+  ), function(req, res) {
+        res.redirect('/private.txt');
+        console.log('sweet');
+        //console.log(req);
+    }
     //res.redirect('/private.txt')
 
-);
-
+)
+//.use(function(req, res, next){
+//    console.log('here goes: %s %s', req.method, req.url);
+//    next();
+//})
+;
 
 app.listen(3000);
 console.log('Listening on port 3000.');
