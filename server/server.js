@@ -1,3 +1,7 @@
+/*
+Some code borrowed from https://github.com/jaredhanson/passport-local/blob/master/examples/login/app.js,
+ */
+
 var express = require('express');
 var app = express();
 var passport = require('passport')
@@ -54,17 +58,12 @@ app.get('/hello.txt', function(req, res){
   req.session.lastPage = '/awesome';
   res.send('Hello World.');
 });
-app.get('/private.txt', function(req, res){
-  res.send('This page requires a login.');
+
+app.get('/private.txt', ensureAuthenticated, function(req, res){
+    //res.render('account', { user: req.user });
+    res.send("You can view the private page.");
 });
 
-//app.post('/login', passport.authenticate('local',
-//         { failureRedirect: '/hello.txt' }
-//  ), function(req, res) {
-//        res.redirect('/private.txt');
-//        console.log('sweet');
-//    }
-//)
 app.post('/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err) }
@@ -82,6 +81,16 @@ app.post('/login', function(req, res, next) {
     })(req, res, next);
 });
 ;
+
+// Simple route middleware to ensure user is authenticated.
+// Use this route middleware on any resource that needs to be protected. If
+// the request is authenticated (typically via a persistent login session),
+// the request will proceed. Otherwise, the user will be redirected to the
+// login page.
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/hello.txt')
+}
 
 app.listen(3000);
 console.log('Listening on port 3000.');
