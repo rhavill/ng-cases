@@ -21,7 +21,11 @@ app.configure(function() {
 });
 
 passport.serializeUser(function(user, done) {
-    done(null, user._id);
+    console.log('serialize');
+    console.log(user);
+    if ((typeof user._id) !== 'undefined')
+        done(null, user._id);
+    
 });
 
 passport.deserializeUser(function(id, done) {
@@ -66,12 +70,14 @@ app.post('/login', function(req, res, next) {
         if (err) { return next(err) }
         if (!user) {
             console.log('notify failed login.');
-            return res.redirect('/hello.txt')
+            //return res.redirect('/hello.txt')
+            res.send({id:0});
         }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
             console.log('notify successful login.')
-            return res.redirect('/private.txt');
+            res.send(user);
+            //return res.redirect('/private.txt');
         });
     })(req, res, next);
 });
