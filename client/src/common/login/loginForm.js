@@ -1,5 +1,4 @@
 angular.module( 'login.form', [] )
-
     .directive( 'loginForm', function() {
         return {
             templateUrl: 'login/loginForm.tpl.html'
@@ -14,22 +13,20 @@ angular.module( 'login.form', [] )
         // Any error message from failing to login
         $scope.authError = null;
 
-//  // Attempt to authenticate the user specified in the form's model
-//  $scope.login = function() {
-//    // Clear any previous security errors
-//    $scope.authError = null;
-//
-//    // Try to login
-//    login.login($scope.user.email, $scope.user.password).then(function(loggedIn) {
-//      if ( !loggedIn ) {
-//        // If we get here then the login failed due to bad credentials
-//        $scope.authError = 'Bad username or password.';
-//      }
-//    }, function(x) {
-//      // If we get here then there was a problem with the login request to the server
-//      $scope.authError = 'Error logging in. Problem contacting server.';
-//    });
-//  };
+        // Attempt to authenticate the user specified in the form's model
+        $scope.login = function() {
+
+            // Try to login
+            login.login($scope.user.email, $scope.user.password).then(function(loggedIn) {
+                if ( !loggedIn ) {
+                    // If we get here then the login failed due to bad credentials
+                    $scope.authError = 'Bad username or password.';
+                }
+            }, function(x) {
+                // If we get here then there was a problem with the login request to the server
+                $scope.authError = 'Error logging in. Problem contacting server.';
+            });
+        };
 
     }])
 /**

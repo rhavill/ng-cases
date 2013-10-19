@@ -9,7 +9,13 @@ angular.module('login', [
                 return true;
             }
             return false;
-        }
+        },
+        login: function(username, password) {
+            var request = $http.post('/login', {username: username, password: password});
+            return request.then(function(response) {
+                service.user = response.data.user;
+            });
+        }        
     };
     return service;
 }]);
