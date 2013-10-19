@@ -25,7 +25,7 @@ passport.serializeUser(function(user, done) {
     console.log(user);
     if ((typeof user._id) !== 'undefined')
         done(null, user._id);
-    
+
 });
 
 passport.deserializeUser(function(id, done) {
@@ -76,7 +76,7 @@ app.post('/login', function(req, res, next) {
         req.logIn(user, function(err) {
             if (err) { return next(err); }
             console.log('notify successful login.')
-            res.send(user);
+            res.send({id: user._id, username: user.username});
             //return res.redirect('/private.txt');
         });
     })(req, res, next);
