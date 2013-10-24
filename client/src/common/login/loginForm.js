@@ -17,7 +17,7 @@ angular.module( 'login.form', [] )
         $scope.login = function() {
 
             // Try to login
-            login.login($scope.user.email, $scope.user.password).then(function(loggedIn) {
+            login.login($scope.user.username, $scope.user.password).then(function(loggedIn) {
                 if ( !loggedIn ) {
                     // If we get here then the login failed due to bad credentials
                     $scope.authError = 'Bad username or password.';
