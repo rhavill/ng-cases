@@ -14,6 +14,8 @@ app.use(function(req, res, next){
   next();
 });
 
+app.use(express.static(__dirname + '/../client/build'));
+
 app.configure(function() {
   app.use(express.static('public'));
   app.use(express.cookieParser());
@@ -81,6 +83,8 @@ app.post('/login', function(req, res, next) {
     })(req, res, next);
 });
 ;
+
+
 
 // Simple route middleware to ensure user is authenticated.
 // Use this route middleware on any resource that needs to be protected. If
