@@ -17,11 +17,12 @@ angular.module( 'login.form', [] )
         $scope.login = function() {
 
             // Try to login
-            login.login($scope.user.username, $scope.user.password).then(function(loggedIn) {
-                if ( !loggedIn ) {
+            login.login($scope.user.username, $scope.user.password).then(function() {
+                if ( !login.isAuthenticated() ) {
                     // If we get here then the login failed due to bad credentials
                     $scope.authError = 'Bad username or password.';
                 }
+                else { $scope.authError = 'Sweet!.'; }
             }, function(x) {
                 // If we get here then there was a problem with the login request to the server
                 $scope.authError = 'Error logging in. Problem contacting server.';

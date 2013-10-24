@@ -13,7 +13,7 @@ angular.module('login', [
         login: function(username, password) {
             var request = $http.post('/login', {username: username, password: password});
             return request.then(function(response) {
-                service.user = response.data.user;
+                service.user = response.data;
             });
         }        
     };
