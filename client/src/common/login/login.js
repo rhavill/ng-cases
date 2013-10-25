@@ -11,9 +11,13 @@ angular.module('login', [
             return false;
         },
         login: function(username, password) {
+            service.user = null;
             var request = $http.post('/login', {username: username, password: password});
             return request.then(function(response) {
-                service.user = response.data;
+                if (response.data.id) {
+                    console.log(response.data.id);
+                    service.user = response.data;
+                }
             });
         }        
     };
