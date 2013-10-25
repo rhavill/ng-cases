@@ -22,7 +22,7 @@ angular.module( 'login.form', [] )
                     // If we get here then the login failed due to bad credentials
                     $scope.authError = 'Bad username or password.';
                 }
-                else { $scope.authError = 'Sweet!.'; }
+                else { $scope.authError = null; }
             }, function(x) {
                 // If we get here then there was a problem with the login request to the server
                 $scope.authError = 'Error logging in. Problem contacting server.';
