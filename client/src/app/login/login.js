@@ -27,7 +27,7 @@ angular.module( 'ngBoilerplate.login', [
     url: '/login',
     views: {
       "main": {
-        controller: 'LoginFormCtrl',
+        controller: 'LoginFormController',
         templateUrl: 'login/login.tpl.html'
       }
     },

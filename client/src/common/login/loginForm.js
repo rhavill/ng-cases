@@ -30,14 +30,4 @@ angular.module( 'login.form', [] )
         };
 
     }])
-/**
- * And of course we define a controller for our route.
- */
-    .controller('LoginFormCtrl', ['$scope', '$location', '$route',
-        function ($scope, $location, $route) {
-            $scope.location = $location;
-            $scope.loginVar = 'this was a variable.';
-            $scope.loggedIn = false;
-        }])
-
 ;
