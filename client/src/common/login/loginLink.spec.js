@@ -22,7 +22,6 @@ describe('login link', function() {
      it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
         expect(scope.currentUser).toBeDefined();
         expect(scope.isAuthenticated).toBe(login.isAuthenticated);
-        expect(scope.login).toBe(login.showLogin);
         expect(scope.logout).toBe(login.logout);
     }));
 */
@@ -42,6 +41,8 @@ describe('login link', function() {
         $rootScope.$digest();
         expect(link.find('a').is(':visible')).toBe(false);
     });
+
+
 
     it('should call logout when the logout button is clicked', function () {
         spyOn(scope, 'logout');
@@ -66,4 +67,5 @@ describe('login link', function() {
         expect(link.find('a:visible').text()).toBe(String.fromCharCode(0xA0)+'Logout');
         expect(link.find('a:hidden').text()).toBe(String.fromCharCode(0xA0)+'Login');
     });
+
 });
