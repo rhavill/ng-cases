@@ -12,28 +12,28 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.login', [
-  'ui.state',
-   'login'
-])
+angular.module('ngBoilerplate.login', [
+      'ui.state',
+      'login'
+    ])
 
 /**
  * Each section or module of the site can also have its own routes. AngularJS
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
-  $stateProvider.state( 'login', {
-    url: '/login',
-    views: {
-      "main": {
-        controller: 'LoginFormController',
-        templateUrl: 'login/login.tpl.html'
-      }
-    },
-    data:{ pageTitle: 'Login' }
-  });
-})
+    .config(function config($stateProvider) {
+      $stateProvider.state('login', {
+        url: '/login',
+        views: {
+          "main": {
+            controller: 'LoginFormController',
+            templateUrl: 'login/login.tpl.html'
+          }
+        },
+        data: { pageTitle: 'Login' }
+      });
+    })
 
 
 ;
