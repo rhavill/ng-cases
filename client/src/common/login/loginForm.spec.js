@@ -19,12 +19,10 @@ describe( 'login section', function() {
             it('should be unauthenticated by default', function () {
                 var params = {
                     $scope: $scope
-                    //crudListMethods: jasmine.createSpy('crudListMethods'),
-                    //users: {}
                 };
                 var ctrl = $controller('LoginFormController', params);
                 //expect($scope.loggedIn).toBe(false);
-                //expect($scope.users).toBe(params.users);
+                expect($scope.user).toBe(null);
                 //expect(params.crudListMethods).toHaveBeenCalled();
             });
         });

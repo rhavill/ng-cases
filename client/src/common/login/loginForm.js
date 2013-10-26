@@ -8,8 +8,7 @@ angular.module( 'login.form', [] )
 // This controller and its template (login/form.tpl.html) are used in a modal dialog box by the security service.
     .controller('LoginFormController', ['$scope', 'login', function($scope, login) {
         // The model for this form
-        $scope.user = {};
-        $scope.test = 'hello';
+        $scope.user = null;
         // Any error message from failing to login
         $scope.authError = null;
 
