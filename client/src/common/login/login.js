@@ -15,7 +15,6 @@ angular.module('login', [
           var request = $http.post('/login', {username: username, password: password});
           return request.then(function (response) {
             if (response.data.id) {
-              console.log(response.data.id);
               service.user = response.data;
             }
           });
