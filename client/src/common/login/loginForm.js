@@ -24,10 +24,10 @@ angular.module('login.form', [])
           else {
             $scope.authError = null;
           }
-        }, function (x) {
+        }/*, function (x) {
           // If we get here then there was a problem with the login request to the server
           $scope.authError = 'Error logging in. Problem contacting server.';
-        });
+        }*/);
       };
 
     }])

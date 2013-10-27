@@ -4,30 +4,46 @@
  * build process will exclude all `.spec.js` files from the build
  * automatically.
  */
-describe('login section', function () {
+describe('login form', function () {
   beforeEach(module('login'));
-  var $scope;
-  var $controller;
 
-  describe('controllers', function () {
-    beforeEach(inject(function ($injector) {
-      $scope = $injector.get('$rootScope');
-      $controller = $injector.get('$controller');
-    }));
+  describe('loginForm controllers', function() {
 
-    describe('LoginFormController', function () {
-      it('should be unauthenticated by default', function () {
-        var params = {
-          $scope: $scope
-        };
-        var ctrl = $controller('LoginFormController', params);
-        expect($scope.user).toBe(null);
-        expect($scope.authError).toBe(null);
-        //expect(params.crudListMethods).toHaveBeenCalled();
+    beforeEach(function(){
+      this.addMatchers({
+        toEqualData: function(expected) {
+          return angular.equals(this.actual, expected);
+        }
       });
     });
 
+    describe('LoginFormController', function(){
+      var scope, ctrl, $httpBackend;
+
+      beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+        $httpBackend = _$httpBackend_;
+        scope = $rootScope.$new();
+        ctrl = $controller('LoginFormController', {$scope: scope});
+      }));
+
+
+      it('should set some default values.', function() {
+        expect(scope.authError).toBe(null);
+        expect(scope.user).toBe(null);
+      });
+
+      it('should set authentication error after failed login.', function() {
+        $httpBackend.expectPOST('/login', {username: 'test', password: 'wrong'}).
+            respond({id:0});
+        scope.user = {username:'test',password:'wrong'};
+        scope.login();
+        $httpBackend.flush();
+        expect(scope.authError).toBeTruthy();
+      });
+    });
   });
+
+
 });
 
 
