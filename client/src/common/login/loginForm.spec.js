@@ -32,13 +32,14 @@ describe('login form', function () {
         expect(scope.user).toBe(null);
       });
 
-      it('should set authentication error after failed login.', function() {
+      it('should unset user and set authentication error after failed login.', function() {
         $httpBackend.expectPOST('/login', {username: 'test', password: 'wrong'}).
             respond({id:0});
         scope.user = {username:'test',password:'wrong'};
         scope.login();
         $httpBackend.flush();
         expect(scope.authError).toBeTruthy();
+        expect(scope.user).toBe(null);
       });
 
       it('should set user and not set authentication error after successful login.', function() {

@@ -19,6 +19,7 @@ angular.module('login.form', [])
         login.login($scope.user.username, $scope.user.password).then(function () {
           if (!login.isAuthenticated()) {
             // If we get here then the login failed due to bad credentials
+            $scope.user = null;
             $scope.authError = 'Bad username or password.';
           }
           else {
@@ -27,6 +28,7 @@ angular.module('login.form', [])
           }
         }, function (x) {
           // If we get here then there was a problem with the login request to the server
+          $scope.user = null;
           $scope.authError = 'Error logging in. Problem contacting server.';
         });
       };
