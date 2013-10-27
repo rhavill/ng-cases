@@ -40,6 +40,16 @@ describe('login form', function () {
         $httpBackend.flush();
         expect(scope.authError).toBeTruthy();
       });
+
+      it('should set user and not set authentication error after successful login.', function() {
+        $httpBackend.expectPOST('/login', {username: 'test', password: 'right'}).
+            respond({id:1, username: 'test'});
+        scope.user = {username:'test',password:'right'};
+        scope.login();
+        $httpBackend.flush();
+        expect(scope.authError).toBe(null);
+        expect(scope.user).toEqualData({id:1, username: 'test'});
+      });
     });
   });
 

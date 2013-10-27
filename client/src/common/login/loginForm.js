@@ -23,6 +23,7 @@ angular.module('login.form', [])
           }
           else {
             $scope.authError = null;
+            $scope.user = login.user;
           }
         }, function (x) {
           // If we get here then there was a problem with the login request to the server
