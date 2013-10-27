@@ -37,4 +37,20 @@ describe('login service tests', function () {
     expect(login.user).toBeNull();
     expect(login.isAuthenticated()).toBeFalsy();
   });
+
+  it('should set user and be authenticated after failed login.', function () {
+    //set up some data for the http call to return and test later.
+    var returnData = { id: 1, username: 'test' };
+
+    //expectPOST to make sure this is called once.
+    httpBackend.expectPOST('/login',{username:'test',password:'right'}).respond(returnData);
+
+    expect(login.user).toBeNull();
+    login.login('test', 'right');
+    //flush the backend to "execute" the request to do the expectedGET assertion.
+    httpBackend.flush();
+    expect(login.user.id).toBe(1);
+    expect(login.user.username).toBe('test');
+    expect(login.isAuthenticated()).toBeTruthy();
+  });
 });
