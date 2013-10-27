@@ -38,7 +38,7 @@ describe('login form', function () {
         scope.user = {username:'test',password:'wrong'};
         scope.login();
         $httpBackend.flush();
-        expect(scope.authError).toBeTruthy();
+        expect(scope.authError).toBe('Bad username or password.');
         expect(scope.user).toBe(null);
       });
 
@@ -51,7 +51,19 @@ describe('login form', function () {
         expect(scope.authError).toBe(null);
         expect(scope.user).toEqualData({id:1, username: 'test'});
       });
+
+      it('should unset user and set authentication error after failure to contact server.', function() {
+        $httpBackend.expectPOST('/login', {username: 'test', password: 'right'}).
+            respond(500,'');
+        scope.user = {username:'test',password:'right'};
+        scope.login();
+        $httpBackend.flush();
+        expect(scope.authError).toBe('Error logging in. Problem contacting server.');
+        expect(scope.user).toBe(null);
+      });
+
     });
+
   });
 
 
