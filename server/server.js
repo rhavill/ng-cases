@@ -92,6 +92,10 @@ app.post('/login', function (req, res, next) {
 });
 ;
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.send({success: true});
+});
 
 // Simple route middleware to ensure user is authenticated.
 // Use this route middleware on any resource that needs to be protected. If
