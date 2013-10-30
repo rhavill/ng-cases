@@ -98,12 +98,12 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/get-user', function(req, res){
-  if (req.user) {
-    console.log('now what?');
-    var huh = req.user;
-    res.json(huh);
+  if (req.isAuthenticated()) {
+    res.send({id: req.user._id, username: req.user.username});
   }
-  res.send(null);
+  else {
+    res.send(null);
+  }
 });
 
 // Simple route middleware to ensure user is authenticated.
