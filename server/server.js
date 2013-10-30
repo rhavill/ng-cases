@@ -106,6 +106,10 @@ app.get('/get-user', function(req, res){
   }
 });
 
+app.get('/is-authenticated', function(req, res){
+  res.send(req.isAuthenticated());
+});
+
 // Simple route middleware to ensure user is authenticated.
 // Use this route middleware on any resource that needs to be protected. If
 // the request is authenticated (typically via a persistent login session),
