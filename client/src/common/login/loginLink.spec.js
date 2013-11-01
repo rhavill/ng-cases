@@ -18,44 +18,12 @@ describe('login link', function () {
     link.remove();
   });
 
-  /*
-   it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
-   expect(scope.currentUser).toBeDefined();
-   expect(scope.isAuthenticated).toBe(login.isAuthenticated);
-   expect(scope.logout).toBe(login.logout);
-   }));
-   */
   it('should attach stuff to the scope', inject(function ($compile, $rootScope) {
     expect(scope.user).toBeDefined();
     expect(scope.isAuthenticated).toBe(login.isAuthenticated);
+    expect(scope.logout).toBe(login.logout);
   }));
-  /*
-   it('should display a link with the current user name, when authenticated', function () {
-   login.currentUser = { firstName: 'Jo', lastName: 'Bloggs'};
-   $rootScope.$digest();
-   expect(link.find('a').text()).toBe('Jo Bloggs');
-   });
 
-   it('should not display a link with the current user name, when not authenticated', function () {
-   login.currentUser = null;
-   $rootScope.$digest();
-   expect(link.find('a').is(':visible')).toBe(false);
-   });
-
-
-
-   it('should call logout when the logout button is clicked', function () {
-   spyOn(scope, 'logout');
-   link.find('button.logout').click();
-   expect(scope.logout).toHaveBeenCalled();
-   });
-
-   it('should call login when the login button is clicked', function () {
-   spyOn(scope, 'login');
-   link.find('button.login').click();
-   expect(scope.login).toHaveBeenCalled();
-   });
-   */
   it('should display login when user is not authenticated', function () {
     expect(link.find('a:visible').text()).toBe(String.fromCharCode(0xA0) + 'Login');
     expect(link.find('a:hidden').text()).toBe(String.fromCharCode(0xA0) + 'Logout');
@@ -66,6 +34,12 @@ describe('login link', function () {
     $rootScope.$digest();
     expect(link.find('a:visible').text()).toBe(String.fromCharCode(0xA0) + 'Logout');
     expect(link.find('a:hidden').text()).toBe(String.fromCharCode(0xA0) + 'Login');
+  });
+
+  it('should call logout when the logout link is clicked', function () {
+    spyOn(scope, 'logout');
+    link.find('.logout').click();
+    expect(scope.logout).toHaveBeenCalled();
   });
 
 });

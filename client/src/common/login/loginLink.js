@@ -5,9 +5,7 @@ angular.module('login.link', [])
         scope: true,
         link: function ($scope, $element, $attrs, $controller) {
           $scope.isAuthenticated = login.isAuthenticated;
-          $scope.logout = function() {
-            login.logout();
-          };
+          $scope.logout = login.logout;
           $scope.$watch(function () {
             return login.user;
           }, function (user) {
