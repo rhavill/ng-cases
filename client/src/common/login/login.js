@@ -18,6 +18,14 @@ angular.module('login', [
               service.user = response.data;
             }
           });
+        },
+        logout: function () {
+          var request = $http.get('/logout');
+          return request.then(function (response) {
+            if (response.data.success) {
+              service.user = null;
+            }
+          });
         }
       };
       return service;
