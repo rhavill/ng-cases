@@ -47,7 +47,7 @@ angular.module( 'ngBoilerplate', [
   'templates-common',
   'ngBoilerplate.home',
   'ngBoilerplate.private'
-  'ui.state',
+  'ui.router',
   'ui.route'
 ])
 ```

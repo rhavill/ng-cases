@@ -13,7 +13,7 @@
  * specified, as shown below.
  */
 angular.module('ngBoilerplate.login', [
-      'ui.state',
+      'ui.router',
       'login'
     ])
 

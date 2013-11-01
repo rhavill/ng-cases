@@ -1,5 +1,5 @@
 angular.module('ngBoilerplate.private', [
-      'ui.state',
+      'ui.router',
       'placeholders',
       'ui.bootstrap'
     ])
