@@ -38,7 +38,7 @@ describe('login service tests', function () {
     expect(login.isAuthenticated()).toBeFalsy();
   });
 
-  it('should set user and be authenticated after failed login.', function () {
+  it('should set user and be authenticated after successful login.', function () {
     //set up some data for the http call to return and test later.
     var returnData = { id: 1, username: 'test' };
 
@@ -53,4 +53,19 @@ describe('login service tests', function () {
     expect(login.user.username).toBe('test');
     expect(login.isAuthenticated()).toBeTruthy();
   });
+});
+
+it('should unset user and be unauthenticated after successful logout.', function () {
+  //set up some data for the http call to return and test later.
+  var returnData = { success: true };
+
+  //expectGET to make sure this is called once.
+  httpBackend.expectGET('/logout').respond(returnData);
+
+  login.logout();
+  //flush the backend to "execute" the request to do the expectedGET assertion.
+  httpBackend.flush();
+  expect(login.user).toBeNull();
+  expect(login.isAuthenticated()).toBeFalsey();
+});
 });
