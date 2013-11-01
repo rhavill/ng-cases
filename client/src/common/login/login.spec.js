@@ -60,7 +60,8 @@ describe('login service tests', function () {
 
     //expectGET to make sure this is called once.
     httpBackend.expectGET('/logout').respond(returnData);
-
+    login.user = { id: 1, username: 'test' };
+    expect(login.isAuthenticated()).toBeTruthy();
     login.logout();
     //flush the backend to "execute" the request to do the expectedGET assertion.
     httpBackend.flush();
