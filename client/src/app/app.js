@@ -5,7 +5,8 @@ angular.module('ngBoilerplate', [
       'ngBoilerplate.private',
       'ngBoilerplate.login',
       'ui.router',
-      'ui.route'
+      'ui.route',
+      'login'
     ])
 
     .config(function myAppConfig($stateProvider, $urlRouterProvider) {
@@ -15,10 +16,13 @@ angular.module('ngBoilerplate', [
     .run(function run() {
     })
 
-    .controller('AppCtrl', function AppCtrl($scope, $location) {
+    .controller('AppCtrl', function AppCtrl($scope, $location, $state) {
       $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         if (angular.isDefined(toState.data.pageTitle)) {
           $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate';
+        }
+        if (toState.name == 'private' || !login.isAuthenticated()) {
+          $state.go('login');
         }
       });
     })
