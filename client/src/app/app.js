@@ -21,11 +21,12 @@ angular.module('ngBoilerplate', [
         if (angular.isDefined(toState.data.pageTitle)) {
           $scope.pageTitle = toState.data.pageTitle;
         }
-        //var isAuth = login.isAuthenticated();
-        //if (toState.name == 'private' || !login.isAuthenticated()) {
-          //$state.go('login');
-        //}
+        var isAuth = login.isAuthenticated();
+        if (toState.name == 'private' && !isAuth) {
+          $state.go('login');
+        }
      });
+
     })
 
 ;
