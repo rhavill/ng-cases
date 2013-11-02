@@ -16,15 +16,16 @@ angular.module('ngBoilerplate', [
     .run(function run() {
     })
 
-    .controller('AppCtrl', function AppCtrl($scope, $location, $state) {
+    .controller('AppCtrl', function AppCtrl($scope, $location, $state, login) {
       $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         if (angular.isDefined(toState.data.pageTitle)) {
           $scope.pageTitle = toState.data.pageTitle;
         }
-        if (toState.name == 'private' || !login.isAuthenticated()) {
-          $state.go('login');
-        }
-      });
+        //var isAuth = login.isAuthenticated();
+        //if (toState.name == 'private' || !login.isAuthenticated()) {
+          //$state.go('login');
+        //}
+     });
     })
 
 ;
