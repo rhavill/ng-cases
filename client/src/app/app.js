@@ -18,11 +18,12 @@ angular.module('ngBoilerplate', [
 
     .controller('AppCtrl', function AppCtrl($scope, $location, $state, login) {
       $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        console.log('new AppCtrl state:'+toState.name);
         if (angular.isDefined(toState.data.pageTitle)) {
           $scope.pageTitle = toState.data.pageTitle;
         }
-        var isAuth = login.isAuthenticated();
-        if (toState.name == 'private' && !isAuth) {
+        $scope.isAuthenticated = login.isAuthenticated();
+        if (toState.name == 'private' && !$scope.isAuthenticated) {
           $state.go('login');
         }
      });

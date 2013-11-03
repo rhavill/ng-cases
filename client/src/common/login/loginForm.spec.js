@@ -26,7 +26,6 @@ describe('login form', function () {
         ctrl = $controller('LoginFormController', {$scope: scope});
       }));
 
-
       it('should set some default values.', function() {
         expect(scope.authError).toBe(null);
         expect(scope.user).toBe(null);
