@@ -1,7 +1,11 @@
 describe('App', function () {
   describe('AppCtrl', function () {
     var ctrl, $location, scope, state;
-
+    var mockLoginService = {
+      isAuthenticated: function (){
+        return false;
+      }
+    };
     beforeEach(module('ngBoilerplate'));
     beforeEach(module('login'));
     beforeEach(module('ui.router'));
@@ -16,7 +20,12 @@ describe('App', function () {
       $rootScope.$digest();
       scope = $rootScope.$new();
       state = $state;
-      ctrl = $controller('AppCtrl', { $location: $location, $scope: scope, $state: $state });
+      ctrl = $controller('AppCtrl', {
+        $location: $location,
+        $scope: scope,
+        $state: $state,
+        login: mockLoginService
+      });
 
     }));
 
