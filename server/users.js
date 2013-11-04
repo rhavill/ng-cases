@@ -17,6 +17,9 @@ db.open(function (err, db) {
       }
     });
   }
+  else {
+      console.log('Error connecting to database. '+err);
+  }
 });
 
 exports.findByUsername = function (user, done) {
