@@ -10,10 +10,8 @@ describe('App', function () {
     beforeEach(module('login'));
     beforeEach(module('ui.router'));
 
-    beforeEach(inject(function (_$rootScope_, _$httpBackend_, $controller, _$location_, $rootScope, $state) {
-      $location = _$location_;
+    beforeEach(inject(function (_$rootScope_, $controller, $rootScope, $state) {
       $rootScope = _$rootScope_;
-      $httpBackend = _$httpBackend_;
       //$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         //console.log('stateChangeSuccess called toState:'+toState.name);
       //});
@@ -21,7 +19,6 @@ describe('App', function () {
       scope = $rootScope.$new();
       state = $state;
       ctrl = $controller('AppCtrl', {
-        $location: $location,
         $scope: scope,
         $state: $state,
         login: mockLoginService
