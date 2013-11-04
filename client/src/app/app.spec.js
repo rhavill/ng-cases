@@ -35,5 +35,15 @@ describe('App', function () {
       $rootScope.$digest();
       expect(state.is('login')).toBe(true);
     }));
+
+    it('should be in private state when accessing private page while authenticated.', inject(function (_$rootScope_) {
+      $rootScope = _$rootScope_;
+      mockLoginService.isAuthenticated = function() {
+        return true;
+      };
+      state.go('private');
+      $rootScope.$digest();
+      expect(state.is('private')).toBe(true);
+    }));
   });
 });
