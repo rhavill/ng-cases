@@ -1,4 +1,4 @@
-angular.module('login.form', [])
+angular.module('login.form', ['ui.showhide'])
     .directive('loginForm', function () {
       return {
         templateUrl: 'login/loginForm.tpl.html'
