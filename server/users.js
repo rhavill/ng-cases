@@ -1,5 +1,5 @@
 var mongo = require('mongodb');
-
+var bcrypt = require('bcrypt');
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
