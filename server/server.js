@@ -6,6 +6,7 @@ var express = require('express');
 var app = express();
 var passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
 var users = require('./users.js');
 
 // simple logger
