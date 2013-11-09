@@ -49,7 +49,8 @@ passport.use(new LocalStrategy(
           console.log('some kind of error.');
           return done(err);
         }
-        if (!user || username !== user.username || password !== user.password) {
+        var match = bcrypt.compareSync(password, user.password);
+        if (!user || username !== user.username || !match) {
           console.log('invalid user or pass.');
           //console.log('tried '+username+'/'+password+' real '+user.username+'/'+user.password);
           return done(null, false, { message: 'Incorrect username or password.' });
