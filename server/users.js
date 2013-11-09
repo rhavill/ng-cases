@@ -113,6 +113,13 @@ var populateDB = function () {
       password: "password"
     },
   ];
+  for (var i = 0; i < users.length; i++) {
+    var salt = bcrypt.genSaltSync(10);
+    users[i].salt = salt;
+    var hash = bcrypt.hashSync(users[i].password, salt);
+    users[i].password = hash;
+  }
+
   db.collection('users', function (err, collection) {
     collection.insert(users, {safe: true}, function (err, result) {
     });
