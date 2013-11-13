@@ -5,11 +5,11 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('ng-boilerplate-test', server);
+db = new Db('ng-cases', server);
 
 db.open(function (err, db) {
   if (!err) {
-    console.log("Connected to 'ng-boilerplate-test' database");
+    console.log("Connected to 'ng-cases' database");
     db.collection('users', {strict: true}, function (err, collection) {
       if (err) {
         console.log("The 'users' collection doesn't exist. Creating it with sample data...");
