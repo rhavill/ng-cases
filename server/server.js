@@ -113,6 +113,11 @@ app.get('/is-authenticated', function(req, res){
   res.send(req.isAuthenticated());
 });
 
+app.get('/cases', cases.findAll);
+app.get('/cases/:id', cases.findById);
+app.post('/cases', cases.addCase);
+app.put('/cases/:id', cases.updateCase);
+app.delete('/cases/:id', cases.deleteCase);
 // Simple route middleware to ensure user is authenticated.
 // Use this route middleware on any resource that needs to be protected. If
 // the request is authenticated (typically via a persistent login session),
