@@ -17,6 +17,12 @@ angular.module('ngCases.cases', [
       });
     })
 
+    .directive('cases', function () {
+        return {
+            templateUrl: 'cases/cases-directive.tpl.html'
+        };
+    })
+
     .controller('CasesCtrl', function CasesCtrl($scope) {
       // This is simple a demo for UI Boostrap.
       $scope.dropdownDemoItems = [
