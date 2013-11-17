@@ -1,4 +1,4 @@
-angular.module('ngBoilerplate.cases', [
+angular.module('ngCases.cases', [
       'ui.router',
       'placeholders',
       'ui.bootstrap'

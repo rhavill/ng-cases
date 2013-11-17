@@ -1,9 +1,9 @@
-angular.module('ngBoilerplate', [
+angular.module('ngCases', [
       'templates-app',
       'templates-common',
-      'ngBoilerplate.home',
-      'ngBoilerplate.cases',
-      'ngBoilerplate.login',
+      'ngCases.home',
+      'ngCases.cases',
+      'ngCases.login',
       'ui.router',
       'ui.route',
       'login'
