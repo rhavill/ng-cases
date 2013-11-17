@@ -1,7 +1,6 @@
 angular.module('ngCases', [
       'templates-app',
       'templates-common',
-      'ngCases.home',
       'ngCases.cases',
       'ngCases.login',
       'ui.router',
@@ -10,7 +9,7 @@ angular.module('ngCases', [
     ])
 
     .config(function myAppConfig($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/home');
+      $urlRouterProvider.otherwise('/login');
     })
 
     .run(function run() {
