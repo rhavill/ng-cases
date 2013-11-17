@@ -2,7 +2,7 @@ angular.module('ngBoilerplate', [
       'templates-app',
       'templates-common',
       'ngBoilerplate.home',
-      'ngBoilerplate.private',
+      'ngBoilerplate.cases',
       'ngBoilerplate.login',
       'ui.router',
       'ui.route',
@@ -23,7 +23,7 @@ angular.module('ngBoilerplate', [
           $scope.pageTitle = toState.data.pageTitle;
         }
         $scope.isAuthenticated = login.isAuthenticated();
-        if (toState.name == 'private' && !$scope.isAuthenticated) {
+        if (toState.name == 'cases' && !$scope.isAuthenticated) {
           $state.go('login');
         }
      });

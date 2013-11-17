@@ -1,23 +1,23 @@
-angular.module('ngBoilerplate.private', [
+angular.module('ngBoilerplate.cases', [
       'ui.router',
       'placeholders',
       'ui.bootstrap'
     ])
 
     .config(function config($stateProvider) {
-      $stateProvider.state('private', {
-        url: '/private',
+      $stateProvider.state('cases', {
+        url: '/cases',
         views: {
           "main": {
-            controller: 'PrivateCtrl',
-            templateUrl: 'private/private.tpl.html'
+            controller: 'CasesCtrl',
+            templateUrl: 'cases/cases.tpl.html'
           }
         },
-        data: { pageTitle: 'Private' }
+        data: { pageTitle: 'Cases' }
       });
     })
 
-    .controller('PrivateCtrl', function PrivateCtrl($scope) {
+    .controller('CasesCtrl', function CasesCtrl($scope) {
       // This is simple a demo for UI Boostrap.
       $scope.dropdownDemoItems = [
         "The first choice!",

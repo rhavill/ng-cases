@@ -5,7 +5,7 @@
  * automatically.
  */
 describe('private section', function () {
-  beforeEach(module('ngBoilerplate.private'));
+  beforeEach(module('ngBoilerplate.cases'));
 
   it('should have a dummy test', inject(function () {
     expect(true).toBeTruthy();

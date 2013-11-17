@@ -26,21 +26,21 @@ describe('App', function () {
 
     }));
 
-    it('should redirect to login state if private state is accessed while unauthenticated.', inject(function (_$rootScope_) {
+    it('should redirect to login state if cases state is accessed while unauthenticated.', inject(function (_$rootScope_) {
       $rootScope = _$rootScope_;
-      state.go('private');
+      state.go('cases');
       $rootScope.$digest();
       expect(state.is('login')).toBe(true);
     }));
 
-    it('should be in private state when accessing private page while authenticated.', inject(function (_$rootScope_) {
+    it('should be in cases state when accessing cases page while authenticated.', inject(function (_$rootScope_) {
       $rootScope = _$rootScope_;
       mockLoginService.isAuthenticated = function() {
         return true;
       };
-      state.go('private');
+      state.go('cases');
       $rootScope.$digest();
-      expect(state.is('private')).toBe(true);
+      expect(state.is('cases')).toBe(true);
     }));
   });
 });
