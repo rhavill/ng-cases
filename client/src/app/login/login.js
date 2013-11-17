@@ -31,7 +31,10 @@ angular.module('ngCases.login', [
             templateUrl: 'login/login.tpl.html'
           }
         },
-        data: { pageTitle: 'Login' }
+        data: {
+          pageTitle: 'Login',
+          redirectState: 'cases'
+        }
       });
     })
 
