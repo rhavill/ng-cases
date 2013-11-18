@@ -43,13 +43,18 @@ describe('login form', function () {
         }
       };
       var mockStateService = {
+        current: {data: {redirectState: null}},
         go: function (state){
         }
       };
 
       beforeEach(inject(function($rootScope, $controller) {
         $scope = $rootScope.$new();
-        ctrl = $controller('LoginFormController', {$scope: $scope, login: mockLoginService});
+        ctrl = $controller('LoginFormController', {
+          $scope: $scope,
+          $state: mockStateService,
+          login: mockLoginService
+        });
       }));
 
       it('should set some default values.', function() {
@@ -64,11 +69,13 @@ describe('login form', function () {
         expect($scope.user).toBe(null);
       });
 
-      it('should set user and not set authentication error after successful login.', function() {
+      it('should set user, not set authentication error and call $state.go() after successful login.', function() {
         $scope.user = {username:'test',password:'correct'};
+        spyOn(mockStateService, 'go').andCallThrough();
         $scope.login();
         expect($scope.authError).toBe(null);
         expect($scope.user).toEqualData({id:1, username: 'test'});
+        expect(mockStateService.go).toHaveBeenCalled();
       });
 
       it('should unset user and set authentication error after failure to contact server.', function() {
